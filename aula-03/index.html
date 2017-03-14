@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="BeMEAN">
+	
+	<head>
+		<meta charset="utf-8">
+		<title>Aula 03 - angular</title>
+	</head>
+
+	<body data-ng-controller="UserController">
+
+		<h1>{{ titulo }}</h1>
+
+		<ul>
+			<li ng-repeat="user in users">
+				{{user.name}} - {{ user.email }}
+			</li>
+		</ul>
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+
+		<script type="text/javascript">
+			
+			angular.module("BeMEAN",[])
+				.controller('UserController', UserController);
+
+			function UserController($scope) {
+				$scope.titulo = "Be MEAN";
+				$scope.users = [
+					{name: 'Ju Dantas', email: 'juds@gmail.com'},
+					{name: 'Teste', email: 'teste@teste.com.br'},
+					{name: 'Usuario', email: 'user@user.com'}
+				]
+			}
+
+			UserController['$inject'] = ['$scope'];
+
+		</script>		
+	</body>
+</html>
