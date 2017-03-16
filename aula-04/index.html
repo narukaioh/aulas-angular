@@ -3,30 +3,31 @@
 	
 	<head>
 		<meta charset="utf-8">
-		<title>Aula 03 - angular</title>
+		<title>Aula 04 - angular</title>
 	</head>
 
 	<body data-ng-controller="UserController as User">
 
 		<h1>{{ User.titulo }}</h1>
 
-		<ul>
-			<li ng-repeat="user in User.users">
-				{{user.name}} - {{ user.email }}
-			</li>
-		</ul>
 
-		<div data-ng-controller="CursoController as Curso">
+		<span data-ng-init="predicate = 'name'; reverse = false;"></span>
 
-			<h1>{{ Curso.titulo }}</h1>
+		<label> Busca: <input ng-model="searchUser"></label>
 
-			<ul>
-				<li ng-repeat="curso in Curso.cursos">
-					{{curso.name}} - {{ curso.teacher }}
-				</li>
-			</ul>
-			
-		</div>
+		<table>
+			<thead>
+				<tr>
+					<th ng-repeat="(key, value) in User.users[0]">{{ key }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="user in User.users | orderBy:predicate | filter:searchUser">
+					<td ng-repeat="(key, value) in user">{{ value }}</td>
+				</tr>
+			</tbody>
+		</table>
+
 
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
 
@@ -49,18 +50,6 @@
 
 			UserController['$inject'] = ['$scope'];
 
-			function CursoController() {
-				var vm = this;
-				
-				vm.titulo = "Be MEAN - Cursos";
-				vm.cursos = [
-					{name: 'Be MEAN', teacher: 'juds@gmail.com'},
-					{name: 'Learning Machine', teacher: 'teste@teste.com.br'},
-					{name: 'Laravel', teacher: 'user@user.com'}
-				]
-			}
-
-			CursoController['$inject'] = ['$scope'];
 
 		</script>		
 	</body>
