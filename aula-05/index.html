@@ -8,10 +8,10 @@
 
 	<body data-ng-controller="UserController as User">
 
-		<button ng-click="User.addUser()">Adicionar usuario</button>
+		<button ng-click="User.addUser(form.User)">Adicionar usuario</button>
 
-		<label>Nome: <input ng-model="User.name"></label>
-		<label>Email: <input ng-model="User.email"></label>
+		<label>Nome: <input ng-model="form.User.name"></label>
+		<label>Email: <input ng-model="form.User.email"></label>
 
 		<span data-ng-init="predicate = 'name'; reverse = false;"></span>
 		<table>
@@ -41,8 +41,8 @@
 				vm.addUser = addUser;
 				vm.users = [];
 
-				function addUser(){
-					vm.users.push({name: vm.name, email: vm.email});
+				function addUser(user){
+					vm.users.push({name: user.name, email: user.email});
 				}
 
 			}
