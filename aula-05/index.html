@@ -2,20 +2,21 @@
 <html lang="en" ng-app="BeMEAN">
 	<head>
 		<meta charset="utf-8">
-		<title>Aula 05 -angular</title>
+		<title>Aula 05 - angular</title>
 		<link rel="stylesheet" href="../css/style.css">
 	</head>
 
 	<body data-ng-controller="UserController as User">
 
-		<button ng-click="User.addUser(form.User)">Adicionar usuario</button>
+		<button ng-click="User.add(form.User)">Adicionar usuario</button>
 
-		<label>Nome: <input ng-model="form.User.name"></label>
-		<label>Email: <input ng-model="form.User.email"></label>
+		<label>Nome: <input type="text" ng-model="form.User.name"></label>
+		<label>Email: <input type="email" ng-model="form.User.email"></label>
 
 		<span data-ng-init="predicate = 'name'; reverse = false;"></span>
+
 		<table>
-			
+
 			<thead>
 				<tr>
 					<th ng-repeat="(key, value) in User.users[0]">{{ key }}</th>
@@ -27,9 +28,11 @@
 					<td ng-repeat="(key, value) in user">{{ value }}</td>
 				</tr>
 			</tbody>
+
 		</table>
 
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+
 		<script type="text/javascript">
 
 			angular.module("BeMEAN", [])
@@ -38,16 +41,19 @@
 			function UserController(){
 				var vm = this;
 
-				vm.addUser = addUser;
-				vm.users = [];
+				vm.add = add;
 
-				function addUser(user){
-					vm.users.push({name: user.name, email: user.email});
+				vm.users = [
+					{name: "Suissa", email: "exemplo@email.com"},
+					{name: "João", email: "joaomelao@email.com"},
+					{name: "Maria Xica", email: "mariaxica@email.com"}
+				];
+
+				function add(user){
+					vm.users.push(user);
 				}
 
 			}
-
-			UserController['$inject'] = ['$scope'];
 
 		</script>
 	</body>
