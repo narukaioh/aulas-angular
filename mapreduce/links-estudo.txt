@@ -1,0 +1,5 @@
+https://github.com/suissa/Ebooks/blob/master/JS%20Funcional/Map/README.md
+
+https://github.com/Webschool-io/workshop-js-funcional-free/tree/master/examples/subway
+
+https://github.com/Webschool-io/js-desafios/tree/master/operators/suissa

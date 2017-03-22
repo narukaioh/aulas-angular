@@ -31,3 +31,32 @@ label {
 	color: #666;
 	font-size: 13px;
 }
+
+table {
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 3px;
+}
+
+table thead {
+    background-color: #f1f1f1;
+    color: #555;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+table thead tr th {
+	padding: 5px 0px;
+}
+
+table thead tr th:nth-child(1), 
+table tbody tr td:nth-child(1) {
+    text-align: left;
+    text-indent: 10px;
+}
+
+table tbody tr td {
+    text-align: center;
+}
