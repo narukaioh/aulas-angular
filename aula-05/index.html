@@ -41,14 +41,13 @@
 			function UserController(){
 				var vm = this;
 
-				vm.add = add;
-
 				vm.users = [
 					{name: "Suissa", email: "exemplo@email.com"},
 					{name: "João", email: "joaomelao@email.com"},
 					{name: "Maria Xica", email: "mariaxica@email.com"}
 				];
-
+				
+				vm.add = add;
 				function add(user){
 					vm.users.push(user);
 				}
