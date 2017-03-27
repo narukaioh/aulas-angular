@@ -2,7 +2,7 @@
 <html lang="en" data-ng-app="BeMEAN">
 	<head>
 		<meta charset="utf-8">
-		<title>Aula 06 - angular</title>
+		<title>Aula 07 - angular</title>
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 		<style type="text/css">
 			.wrapper {
@@ -19,15 +19,17 @@
 
 			<p class="col s12">
 				<label>
-					<input type="text" data-ng-model="form.User.name" placeholder="Name:">
+					<input type="text" data-ng-model="User.form.name" placeholder="Name:">
 				</label>
 				<br>
 				<label>
-					<input type="email" data-ng-model="form.User.email" placeholder="Email:">
+					<input type="email" data-ng-model="User.form.email" placeholder="Email:">
 				</label>
 			</p>
 
-			<button data-ng-click="User.add(form.User)" class="btn btn-large green waves-effect waves-light col s12">ADD</button>
+			<button data-ng-click="User.add(User.form)" class="btn btn-large green waves-effect waves-light col s6" type="submit" name="action">ADD</button>
+			
+			<button data-ng-click="User.save(User.form)" class="btn btn-large blue waves-effect waves-light col s6" type="submit" name="action">SAVE</button>
 
 			<span data-ng-init="predicate = 'name'; reverse = false"></span>
 
@@ -44,11 +46,13 @@
 						<th></th>
 						<th>Name</th>
 						<th>Email</th>
+						<th></th>
+						<th></th>
 					</tr>					
 				</thead>
 
 				<tbody>
-					<tr ng-repeat="user in User.users | orderBy:predicate:reverse | filter:searchUser">
+					<tr ng-repeat="user in User.users | filter:searchUser">
 
 						<td>
 							<input type="checkbox" id="user-{{$index}}" ng-model="user.selecionado" />
@@ -60,6 +64,9 @@
 
 						<td>
 							<button data-ng-click="User.removeByEmail(user.email)" class="btn btn-large red waves-effect waves-light col s12" type="submit" name="action">DELETE</button>
+						</td>
+						<td>
+							<button data-ng-click="User.edit(user, $index)" class="btn btn-large blue waves-effect waves-light col s12" type="submit" name="action">EDIT</button>
 						</td>
 					</tr>
 				</tbody>
@@ -111,6 +118,24 @@
 				vm.remove = remove;
 				function remove(users){
 					vm.users = users.filter(function(el){ return !el.selecionado  })
+				}
+
+				vm.edit = edit;
+				function edit(user, index){
+					vm.form = angular.copy(user);
+					vm.form.index = index;
+				}
+
+				vm.save = save;
+				function save(user){
+					var users = vm.users.map(function(el, i){
+						if (i === user.index) {
+							delete user.index;
+							return user;
+						}
+						return el;
+					});
+					vm.users = users;
 				}
 
 			}
